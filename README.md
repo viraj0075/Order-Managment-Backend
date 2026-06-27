@@ -89,7 +89,7 @@ Backend/
     ├── Routes/              # Express endpoint routing maps
     ├── Utils/               # Helper utils and cron status workers
     └── server.js            # Main application starter
-    ```
+```
 
 ---
 
@@ -100,6 +100,6 @@ Since the backend is deployed on Render's free tier, the web service automatical
 To keep the backend awake 24/7 and prevent the 50+ second "cold start" delay, a GitHub Actions workflow is configured in [.github/workflows/keep-alive.yml](.github/workflows/keep-alive.yml).
 
 - **Interval**: Runs automatically every 10 minutes.
-- **Endpoint**: Pings the products endpoint `https://<your-backend-url>/products/Burger`.
+- **Endpoint**: Pings the products endpoint `<BACKEND_URL>`.
 - **Manual Trigger**: Can be run manually under the **Actions** tab of your GitHub repository.
 
