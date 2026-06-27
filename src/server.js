@@ -13,8 +13,15 @@ if (!process.env.PORT) throw new ApiError(400, "PORT is not defined")
 const port = process.env.PORT;
 
 app.use(express.json());
+
+const corsOrigin = process.env.CORS_ORIGIN
+    ? (process.env.CORS_ORIGIN.includes(",")
+        ? process.env.CORS_ORIGIN.split(",").map(o => o.trim().replace(/\/$/, ""))
+        : process.env.CORS_ORIGIN.trim().replace(/\/$/, ""))
+    : undefined;
+
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: corsOrigin,
     credentials: true
 }));
 
