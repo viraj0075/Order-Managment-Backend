@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  productId   String   @id @default(uuid())
+  name        String   @unique
+  description String
+  price       Decimal  @db.Decimal(10, 2)
+  image       String
+  category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("products")
+}
+
+model Order {
+  orderId         String   @id @default(uuid())
+  status          String   @default("Order Received")
+  orderItems      Json
+  deliveryDetails Json
+  totalAmount     Decimal  @db.Decimal(10, 2)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("orders")
+}
