@@ -2,7 +2,6 @@ import ApiError from "../Utils/ApiError.js";
 import ApiResponse from "../Utils/ApiResponse.js";
 import { prisma } from "../Config/db.js";
 
-// Create Order
 export const createOrder = async (req, res) => {
     try {
         const { orderItems, deliveryDetails, totalAmount } = req.body;

@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-// Mock Prisma
 vi.mock('../Config/db.js', () => {
     return {
         prisma: {
@@ -34,13 +33,10 @@ describe('Order Status Cron Transitions', () => {
 
         startOrderStatusCron();
 
-        // Advance Vitest's fake timer by 10 seconds to trigger interval loop
         await vi.advanceTimersByTimeAsync(10000);
 
-        // Assert that active orders were fetched
         expect(prisma.order.findMany).toHaveBeenCalled();
 
-        // Assert transitions
         expect(prisma.order.update).toHaveBeenCalledWith({
             where: { orderId: 'order-rec' },
             data: { status: ORDER_STATES.PREPARING }

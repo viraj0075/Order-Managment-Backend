@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import request from 'supertest';
 import express from 'express';
 
-// Mock the db file before importing anything that uses Prisma
 vi.mock('../Config/db.js', () => {
     return {
         prisma: {
@@ -18,17 +17,14 @@ vi.mock('../Config/db.js', () => {
     };
 });
 
-// Import the mocked database client and routes
 import { prisma } from '../Config/db.js';
 import orderRoutes from '../Routes/orders.routes.js';
 import ApiError from '../Utils/ApiError.js';
 
-// Setup a small Express instance just for testing routes
 const app = express();
 app.use(express.json());
 app.use('/orders', orderRoutes);
 
-// Register Global Error Handler matching your server.js logic
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || "Internal Server Error";
@@ -66,7 +62,6 @@ describe('Orders API Endpoints', () => {
         };
 
         it('should create an order successfully with valid input data', async () => {
-            // Stub the Prisma model database response
             const mockCreatedOrder = {
                 orderId: 'uuid-12345',
                 status: 'Order Received',
@@ -109,7 +104,6 @@ describe('Orders API Endpoints', () => {
             const invalidData = {
                 orderItems: validOrderData.orderItems,
                 totalAmount: 25.98
-                // deliveryDetails is missing
             };
 
             const response = await request(app)

@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { prisma } from '../Config/db.js';
 import { createOrder, getAllOrders, getOrderById } from '../Controllers/orders.controllers.js';
 
-// Mock Prisma
 vi.mock('../Config/db.js', () => {
     return {
         prisma: {
