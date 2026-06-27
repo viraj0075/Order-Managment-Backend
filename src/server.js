@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express"
 import cors from "cors"
-import ApiError from "./utils/ApiError.js"
+import ApiError from "./Utils/ApiError.js"
 import { connectDB, disconnectDB } from "./Config/db.js"
 import productRoutes from "./Routes/products.routes.js"
 import orderRoutes from "./Routes/orders.routes.js"

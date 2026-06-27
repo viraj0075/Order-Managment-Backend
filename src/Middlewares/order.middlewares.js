@@ -1,5 +1,5 @@
 import Joi from "joi";
-import ApiError from "../utils/ApiError.js";
+import ApiError from "../Utils/ApiError.js";
 
 const validateRequest = (schema, property = "body") => {
     return (req, res, next) => {
